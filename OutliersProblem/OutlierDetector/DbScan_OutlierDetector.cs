@@ -1,7 +1,6 @@
 ﻿using OutliersProblem.Models;
 using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace OutliersProblem.OutlierDetector
 {
@@ -12,7 +11,6 @@ namespace OutliersProblem.OutlierDetector
     {
         public DbScan_OutlierDetector()
         {
-
         }
 
         public bool IsOutlier(decimal price, in IEnumerable<StockPrice> stockPrices)

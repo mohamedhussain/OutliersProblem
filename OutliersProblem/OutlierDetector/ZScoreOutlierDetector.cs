@@ -1,4 +1,5 @@
-﻿using OutliersProblem.Models;
+﻿using Microsoft.Extensions.Options;
+using OutliersProblem.Models;
 using System;
 using System.Collections.Generic;
 
@@ -7,24 +8,25 @@ namespace OutliersProblem.OutlierDetector
     /// <summary>
     /// Implements the Z Score algorithm to determine if a given value is an outlier or not
     /// </summary>
-    public class ZScore_OutlierDetector : IOutlierDetector
+    public class ZScoreOutlierDetector : IOutlierDetector
     {
-        private readonly double _threshold;
+        private readonly double threshold;
 
-        public ZScore_OutlierDetector(double threshold)
+        public ZScoreOutlierDetector(IOptions<ZScoreConfig> options)
         {
-            _threshold = threshold;
+            threshold = options.Value.Threshold;
         }
 
         /// <summary>
         /// This method takes a set of stock prices and the determines if the given price is an outlier or not.
-        /// The method determines the standard score of the given price and if the score falls outside of the threshold then it returns true else it returns false. 
+        /// The method determines the standard score of the given price and if the score falls outside of the threshold then it returns true else it returns false.
         /// </summary>
         /// <param name="stockPrices">A sample list of stock prices to evaluate the given price against.</param>
         /// <param name="price">The decimal value to evaluate.</param>
         /// <returns>True if the price is an outlier else false.</returns>
         public bool IsOutlier(decimal price, in IEnumerable<StockPrice> stockPrices)
         {
+            //  Check if stockPrices is not null
             if (stockPrices is null)
             {
                 throw new ArgumentNullException(nameof(stockPrices));
@@ -34,13 +36,13 @@ namespace OutliersProblem.OutlierDetector
             var zs = CalculateZscore((double)price, stockPrices);
 
             //  Step 2 : Check if the Z score if above the threshold. Return true if it is outside the bounds else return false.
-            return Math.Abs(zs) > _threshold;
+            return Math.Abs(zs) > threshold;
         }
 
         /// <summary>
         /// Returns the Z Score of the specified value compared to a sample data set.
         /// </summary>
-        /// <param name="price">A double-precision floating-point value for which the Z Score has to be calculated.</param>
+        /// <param name="price">A double value for which the Z Score has to be calculated.</param>
         /// <param name="stockPrices">A sample list of stock prices to evaluate the given price against.</param>
         /// <returns>The Z Score of the price</returns>
         private double CalculateZscore(double price, in IEnumerable<StockPrice> stockPrices)
