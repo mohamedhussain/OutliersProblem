@@ -18,7 +18,7 @@ namespace OutliersProblem.OutlierDetector
         }
 
         /// <summary>
-        /// This method takes a set of stock prices and the determines if the given price is an outlier or not.
+        /// This method takes a set of stock prices and determines if the given price is an outlier or not.
         /// The method determines the standard score of the given price and if the score falls outside of the threshold then it returns true else it returns false.
         /// </summary>
         /// <param name="stockPrices">A sample list of stock prices to evaluate the given price against.</param>
