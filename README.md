@@ -3,12 +3,12 @@ This application reads a set of data points from a .csv file on the disk and wil
 It will print the outliers to the console window and will write the sanitized data with the outliers removed to a new .csv file on the disk.
 
 ## How to run the application
-1. Clone the repository <https://github.com/mohamedhussain/OutliersProblem.git> to your computer.
-2. Open the solution file "**OutliersProblem.sln**" that is in the root directory using Visual Studio.
+1. Clone the repository <https://github.com/mohamedhussain/OutliersProblem.git> onto your computer.
+2. Open the solution file "**OutliersProblem.sln**" that is located in the root directory using Visual Studio.
 3. There should be two projects in the solution.
    * OutliersProblem
    * OutliersProblem_Test
-4. Right click on the OutliersProblem and set it as the Startup Project.
+4. Right click on the "OutliersProblem" project and set it as the Startup Project.
 5. Open the appsettings.json file and set the file path for the input file and the output file.
 ```json  
     "CSVRepoConfig": {
